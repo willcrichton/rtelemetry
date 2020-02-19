@@ -1,20 +1,16 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Cmd + Shift + B'
-#   Check Package:             'Cmd + Shift + E'
-#   Test Package:              'Cmd + Shift + T'
+server_url <- 'http://35.247.79.150:8888'
+
+# Generate a random session ID once when the addin loads
+session_id <- paste(sample(LETTERS, 16, replace=TRUE), collapse='')
+
+get_timestamp <- function() {
+  as.numeric(as.POSIXct(Sys.time()))
+}
 
 trace_to_json <- function(trace) {
   json <- list(
+    session=session_id,
+    timestamp=get_timestamp(),
     message=trace$message,
     trace=lapply(trace$trace$calls, toString)
   )
@@ -28,7 +24,12 @@ rtelemetryAddin <- function() {
   error_handler <- function(...) {
     rlang::entrace(...)
     trace <- rlang::last_trace()
-    cat(trace_to_json(trace))
+    json <- trace_to_json(trace)
+    tryCatch({
+      httr::POST(server_url, body=json, encode='json', httr::timeout(0.2))
+    }, error = function(e) {
+      # for now, ignore any http issues
+    })
   }
 
   options(error = error_handler)

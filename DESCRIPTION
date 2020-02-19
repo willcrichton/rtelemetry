@@ -8,3 +8,6 @@ Description: Gathers telemetry data about R errors
 License: Apache 2.0
 Encoding: UTF-8
 LazyData: true
+Imports:
+  httr,
+  jsonlite
