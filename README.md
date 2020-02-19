@@ -11,13 +11,9 @@ Run these commands in RStudio:
 ```r
 install.packages('devtools')
 devtools::install_github('willcrichton/rtelemetry')
+rtelemetry::install_profile()
 ```
 
-Then run this from the terminal:
-
-```bash
-echo "rtelemetry::profile_init()" >> ~/.Rprofile
-```
 
 ## Usage
 

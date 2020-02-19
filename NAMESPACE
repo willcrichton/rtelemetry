@@ -1,4 +1,4 @@
 export(rtelemetry_enable)
 export(rtelemetry_disable)
 export(profile_init)
-
+export(install_profile)

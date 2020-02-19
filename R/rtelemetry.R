@@ -42,6 +42,12 @@ profile_init <- function() {
 }
 
 #' @export
+install_profile <- function() {
+  profile_path <- path.expand(file.path("~", ".Rprofile"))
+  write("rtelemetry::profile_init()\n", file=profile_path, append=TRUE)
+}
+
+#' @export
 rtelemetry_enable <- function() {
   file.create(rtelemetry_path)
   register_error_handler()
