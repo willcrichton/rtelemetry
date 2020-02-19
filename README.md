@@ -17,10 +17,10 @@ devtools::install_github('willcrichton/rtelemetry')
 
 At the beginning of your development session, open the Addins menu in RStudio.
 
-![]()
+![](https://github.com/willcrichton/rtelemetry/blob/master/assets/step1.png?raw=true)
 
 Then click "R Telemetry" from the dropdown. You're good to go!
 
-![]()
+![](https://github.com/willcrichton/rtelemetry/blob/master/assets/step2.png?raw=true)
 
 Make sure to re-run this command if you close RStudio or restart the R session.
