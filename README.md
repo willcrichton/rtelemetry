@@ -6,6 +6,21 @@ We are collecting this data to guide the development of tools to help data scien
 
 ## Setup
 
+Run these commands in RStudio:
+
 ```r
+install.packages('devtools')
 devtools::install_github('willcrichton/rtelemetry')
 ```
+
+## Usage
+
+At the beginning of your development session, open the Addins menu in RStudio.
+
+![]()
+
+Then click "R Telemetry" from the dropdown. You're good to go!
+
+![]()
+
+Make sure to re-run this command if you close RStudio or restart the R session.
