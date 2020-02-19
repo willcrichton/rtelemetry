@@ -13,6 +13,12 @@ install.packages('devtools')
 devtools::install_github('willcrichton/rtelemetry')
 ```
 
+Then run this from the terminal:
+
+```bash
+echo "rtelemetry::profile_init()" >> ~/.Rprofile
+```
+
 ## Usage
 
 At the beginning of your development session, open the Addins menu in RStudio.
