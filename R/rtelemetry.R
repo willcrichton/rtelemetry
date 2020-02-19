@@ -3,6 +3,8 @@ server_url <- 'http://35.247.79.150:8888'
 # Generate a random session ID once when the addin loads
 session_id <- paste(sample(LETTERS, 16, replace=TRUE), collapse='')
 
+rtelemetry_path <- path.expand('~/.rtelemetry')
+
 get_timestamp <- function() {
   as.numeric(as.POSIXct(Sys.time()))
 }
@@ -17,20 +19,40 @@ trace_to_json <- function(trace) {
   jsonlite::toJSON(json)
 }
 
-#' @export
-rtelemetryAddin <- function() {
-  cat("Enabling R telemetry")
+error_handler <- function(...) {
+  rlang::entrace(...)
+  trace <- rlang::last_trace()
+  json <- trace_to_json(trace)
+  tryCatch({
+    httr::POST(server_url, body=json, encode='json', httr::timeout(0.2))
+  }, error = function(e) {
+    # for now, ignore any http issues
+  })
+}
 
-  error_handler <- function(...) {
-    rlang::entrace(...)
-    trace <- rlang::last_trace()
-    json <- trace_to_json(trace)
-    tryCatch({
-      httr::POST(server_url, body=json, encode='json', httr::timeout(0.2))
-    }, error = function(e) {
-      # for now, ignore any http issues
-    })
-  }
-
+register_error_handler <- function() {
   options(error = error_handler)
 }
+
+#' @export
+profile_init <- function() {
+  if (file.exists(rtelemetry_path)) {
+    register_error_handler()
+  }
+}
+
+#' @export
+rtelemetry_enable <- function() {
+  file.create(rtelemetry_path)
+  register_error_handler()
+  cat("Enabled R telemetry.")
+}
+
+#' @export
+rtelemetry_disable <- function() {
+  file.remove(rtelemetry_path)
+  options(error = NULL)
+  cat("Disabled R telemetry.")
+}
+
+cat("rtelemetry loaded.")

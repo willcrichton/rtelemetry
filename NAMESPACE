@@ -1,1 +1,4 @@
-export(rtelemetryAddin)
+export(rtelemetry_enable)
+export(rtelemetry_disable)
+export(profile_init)
+

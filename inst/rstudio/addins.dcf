@@ -1,4 +1,9 @@
-Name: R Telemetry
+Name: Enable R Telemetry
 Description: Collect and send R error messages for analysis
-Binding: rtelemetryAddin
+Binding: rtelemetry_enable
+Interactive: true
+
+Name: Disable R Telemetry
+Description:
+Binding: rtelemetry_disable
 Interactive: true

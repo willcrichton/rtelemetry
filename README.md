@@ -19,8 +19,6 @@ At the beginning of your development session, open the Addins menu in RStudio.
 
 ![](https://raw.githubusercontent.com/willcrichton/rtelemetry/master/assets/step1.png)
 
-Then click "R Telemetry" from the dropdown. You're good to go!
+Then click "Enable R Telemetry" from the dropdown. You're good to go!
 
 ![](https://raw.githubusercontent.com/willcrichton/rtelemetry/master/assets/step2.png)
-
-Make sure to re-run this command if you close RStudio or restart the R session.
