@@ -1,0 +1,4 @@
+Name: R Telemetry
+Description: Collect and send R error messages for analysis
+Binding: rtelemetryAddin
+Interactive: true
