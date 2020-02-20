@@ -14,6 +14,7 @@ devtools::install_github('willcrichton/rtelemetry')
 rtelemetry::install_profile()
 ```
 
+If you're using RStudio Cloud, refresh the webpage once before proceeding.
 
 ## Usage
 
